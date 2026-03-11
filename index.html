@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المصنفات وأنواعها</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --bg-color: #f4f7f6;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --border-color: #e0e0e0;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .main-title {
+            text-align: center;
+            color: var(--primary-color);
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            margin-bottom: 40px;
+            border-bottom: 5px solid var(--secondary-color);
+        }
+
+        .diagram-section {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .diagram-section:hover {
+            transform: translateY(-5px);
+        }
+
+        .section-title {
+            color: var(--secondary-color);
+            border-right: 5px solid var(--primary-color);
+            padding-right: 15px;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        /* Branching Tree Design using Lists */
+        .tree-list {
+            list-style-type: none;
+            padding-right: 20px;
+            border-right: 2px dashed #bdc3c7;
+        }
+
+        .tree-list > li {
+            position: relative;
+            padding: 10px 15px 10px 0;
+            margin-bottom: 15px;
+            background: #fdfdfd;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+        }
+
+        .tree-list > li::before {
+            content: '';
+            position: absolute;
+            top: 22px;
+            right: -20px;
+            width: 20px;
+            height: 2px;
+            background: #bdc3c7;
+        }
+
+        .tree-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .sub-tree {
+            list-style-type: circle;
+            padding-right: 30px;
+            margin-top: 10px;
+            color: #555;
+        }
+
+        .sub-tree li {
+            margin-bottom: 5px;
+        }
+
+        .sub-sub-tree {
+            list-style-type: square;
+            padding-right: 25px;
+            margin-top: 5px;
+            color: #777;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 25px;
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .footer p {
+            margin: 8px 0;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .heart {
+            color: #9b59b6;
+            font-size: 1.2em;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+            .diagram-section {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1 class="main-title">المصنفات وأنواعها</h1>
+
+        <div class="diagram-section">
+            <h2 class="section-title">1. أنواع المصنف</h2>
+            <ul class="tree-list">
+                <li>
+                    <span class="tree-title">أ - من حيث قيمتها:</span>
+                    <ul class="sub-tree">
+                        <li>تصنيفات علمية مكتوبة</li>
+                        <li>المصنفات الفنية</li>
+                        <li>المصنفات الموسيقية</li>
+                        <li>البرامج و الوثائق الإعلامية</li>
+                    </ul>
+                </li>
+                <li>
+                    <span class="tree-title">ب - من حيث نشأتها:</span>
+                    <ul class="sub-tree">
+                        <li><strong>مصنفات أصلية:</strong>
+                            <ul class="sub-sub-tree">
+                                <li>مصنفات فردية &larr; أصلية محضة</li>
+                                <li>مصنفات مشتركة &larr; تتفرع إلى:
+                                    <ul>
+                                        <li>المصنف الجماعي</li>
+                                        <li>المصنف المشترك</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><strong>مصنفات مشتقة:</strong>
+                            <ul class="sub-sub-tree">
+                                <li>الترجمة</li>
+                                <li>الاقتباس</li>
+                                <li>التوزيع الموسيقي</li>
+                                <li>تحويل المصنف</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <div class="diagram-section">
+            <h2 class="section-title">2. مراحل المصنف</h2>
+            <ul class="tree-list">
+                <li>مرحلة ميلاد الفكرة</li>
+                <li>مرحلة رسوخ الفكرة وإستقرارها</li>
+                <li>مرحلة تصميم وتنفيذ الفكرة</li>
+                <li>مرحلة نشر المصنف وتداولها</li>
+            </ul>
+        </div>
+
+        <div class="diagram-section">
+            <h2 class="section-title">3. عناصر المصنف</h2>
+            <ul class="tree-list">
+                <li>عنصر موضوعي</li>
+                <li>عنصر شكلي</li>
+            </ul>
+        </div>
+
+        <div class="diagram-section">
+            <h2 class="section-title">4. تعريف</h2>
+            <p style="padding-right: 15px; color: #555;">(مساحة مخصصة للتعريف)</p>
+        </div>
+
+        <div class="footer">
+            <p>هذا المخطط من اعداد الزميلة عبير عائشة</p>
+            <p>2026-2025 كل الحقوق محفوظة المطور انا خاطيني نتوما الصح <span class="heart">💜</span></p>
+        </div>
+
+    </div>
+
+</body>
+</html>
