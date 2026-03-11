@@ -3,482 +3,245 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>المصنفات وأنواعها | ملخص قانوني</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <title>المصنفات وأنواعها | ملخص أكاديمي</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
     <style>
         /* ==========================================================================
-           1. المتغيرات ونظام الألوان (Variables & Color Palette)
+           الألوان والتنسيقات الأكاديمية الرسمية
            ========================================================================== */
         :root {
-            /* الألوان الأساسية */
-            --primary-color: #1a365d;
-            --primary-light: #2a4365;
-            --secondary-color: #2b6cb0;
-            --secondary-light: #4299e1;
-            
-            /* ألوان التمييز والتفرعات */
-            --accent-orange: #ed8936;
-            --accent-green: #48bb78;
-            --accent-purple: #9f7aea;
-            --accent-red: #f56565;
-            
-            /* ألوان الخلفية والنصوص */
-            --bg-body: #edf2f7;
-            --bg-paper: #ffffff;
-            --text-main: #2d3748;
-            --text-muted: #718096;
-            --border-light: #e2e8f0;
-            --border-dark: #cbd5e0;
-            
-            /* الظلال والانحناءات */
-            --shadow-sm: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            --radius-sm: 6px;
-            --radius-md: 10px;
-            --radius-lg: 16px;
-            
-            /* التباعد المنهجي */
-            --space-xs: 5px;
-            --space-sm: 10px;
-            --space-md: 20px;
-            --space-lg: 30px;
-            --space-xl: 50px;
+            --primary-dark: #1b365d;   /* أزرق داكن رسمي */
+            --primary-light: #2c5282;  /* أزرق فاتح قليلاً */
+            --text-main: #2d3748;      /* رمادي داكن للنصوص */
+            --text-muted: #4a5568;     /* رمادي فاتح للنصوص الفرعية */
+            --border-color: #cbd5e0;   /* لون الحدود */
+            --bg-page: #f7fafc;        /* خلفية الصفحة العادية */
+            --bg-paper: #ffffff;       /* لون الورقة البيضاء */
         }
 
-        /* ==========================================================================
-           2. الإعدادات الأساسية (Base Styles)
-           ========================================================================== */
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
+            font-family: 'Tajawal', sans-serif;
         }
 
         body {
-            font-family: 'Tajawal', sans-serif;
-            background-color: var(--bg-body);
+            background-color: var(--bg-page);
             color: var(--text-main);
-            line-height: 1.7;
+            line-height: 1.8;
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 40px 20px;
-            background-image: radial-gradient(var(--border-dark) 1px, transparent 1px);
-            background-size: 20px 20px;
+            padding: 30px 15px;
         }
 
-        /* ==========================================================================
-           3. أزرار التحكم (Controls & Buttons)
-           ========================================================================== */
+        /* زر التحميل */
         .controls-container {
             width: 100%;
-            max-width: 950px;
+            max-width: 850px;
             display: flex;
             justify-content: flex-end;
-            margin-bottom: 25px;
-            gap: 15px;
-        }
-
-        .btn {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 12px 25px;
-            font-family: 'Cairo', sans-serif;
-            font-size: 1.1rem;
-            font-weight: 700;
-            border: none;
-            border-radius: var(--radius-md);
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            box-shadow: var(--shadow-sm);
+            margin-bottom: 20px;
         }
 
         .btn-pdf {
-            background: linear-gradient(135deg, #e53e3e 0%, #c53030 100%);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 20px;
+            font-family: 'Cairo', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            background-color: #c53030;
             color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
-        .btn-pdf:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-md);
-            background: linear-gradient(135deg, #f56565 0%, #e53e3e 100%);
-        }
-
-        /* ==========================================================================
-           4. حاوية المستند (Document Container)
-           ========================================================================== */
+        /* حاوية الورقة الأكاديمية */
         .document-wrapper {
             background-color: var(--bg-paper);
             width: 100%;
-            max-width: 950px;
-            padding: 60px 70px;
-            box-shadow: var(--shadow-lg);
-            border-radius: var(--radius-lg);
+            max-width: 850px;
+            padding: 50px 60px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            border-top: 15px solid var(--primary-dark);
+            /* لضمان عدم وجود مشاكل في PDF */
             position: relative;
-            overflow: hidden;
-            border-top: 10px solid var(--primary-color);
-            animation: fadeIn 1s ease-out;
+            overflow: visible;
         }
 
-        /* زخرفة خلفية المستند */
-        .document-wrapper::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 15px;
-            background: linear-gradient(90deg, var(--secondary-color), var(--accent-orange), var(--accent-purple), var(--accent-green));
-            opacity: 0.8;
-        }
-
-        /* ==========================================================================
-           5. الترويسة (Header Section)
-           ========================================================================== */
+        /* الترويسة */
         .doc-header {
             text-align: center;
-            margin-bottom: var(--space-xl);
-            padding-bottom: var(--space-lg);
-            border-bottom: 3px dashed var(--border-light);
-            position: relative;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--primary-dark);
         }
 
         .doc-title {
             font-family: 'Cairo', sans-serif;
-            color: var(--primary-color);
-            font-size: 3rem;
-            font-weight: 800;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.05);
+            color: var(--primary-dark);
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 5px;
         }
 
         .doc-subtitle {
             color: var(--text-muted);
             font-size: 1.2rem;
             font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: #f7fafc;
-            padding: 5px 20px;
-            border-radius: 50px;
-            border: 1px solid var(--border-light);
         }
 
-        /* ==========================================================================
-           6. المخطط المنهجي الشجري (Methodological Tree Structure)
-           ========================================================================== */
+        /* الأقسام والمقاطع */
         .section-block {
-            margin-bottom: 45px;
-            animation: slideUp 0.8s ease-out forwards;
-            opacity: 0;
-            transform: translateY(20px);
+            margin-bottom: 35px;
+            /* منع قص المقطع بين صفحتين في الـ PDF */
+            page-break-inside: avoid;
         }
-
-        /* تأخير ظهور الأقسام لتأثير متسلسل */
-        .section-block:nth-child(2) { animation-delay: 0.2s; }
-        .section-block:nth-child(3) { animation-delay: 0.4s; }
-        .section-block:nth-child(4) { animation-delay: 0.6s; }
-        .section-block:nth-child(5) { animation-delay: 0.8s; }
 
         .section-title {
-            display: flex;
-            align-items: center;
-            gap: 15px;
             font-family: 'Cairo', sans-serif;
-            background: linear-gradient(90deg, var(--primary-color) 0%, var(--primary-light) 100%);
-            color: white;
-            padding: 12px 25px;
-            border-radius: var(--radius-sm);
-            font-size: 1.5rem;
+            color: var(--primary-dark);
+            font-size: 1.4rem;
             font-weight: 700;
-            margin-bottom: var(--space-lg);
-            box-shadow: var(--shadow-sm);
-            width: fit-content;
+            border-right: 4px solid var(--primary-dark);
+            padding-right: 15px;
+            margin-bottom: 15px;
+            background-color: #edf2f7;
+            padding: 8px 15px 8px 8px;
         }
 
-        .section-title svg {
-            width: 28px;
-            height: 28px;
-            fill: none;
-            stroke: currentColor;
-            stroke-width: 2;
+        /* مساحة التعريف الفارغة */
+        .definition-box {
+            min-height: 120px;
+            border: 1px dashed var(--border-color);
+            background-color: #fbfbfc;
+            margin-right: 20px;
+            padding: 15px;
+            border-radius: 4px;
         }
 
-        /* تصميم الشجرة الهرمية */
-        .tree-root {
+        /* القوائم والتفرعات المنهجية */
+        ul.level-1 {
             list-style: none;
-            padding: 0 20px 0 0;
+            padding-right: 20px;
+        }
+
+        ul.level-1 > li {
             position: relative;
-            border-right: 4px solid var(--secondary-light);
-            margin-right: 15px;
-        }
-
-        .tree-node {
-            position: relative;
-            margin-bottom: var(--space-md);
-            padding: 15px 30px 15px 15px;
-            background-color: #f8fafc;
-            border: 1px solid var(--border-light);
-            border-radius: var(--radius-md);
-            transition: all 0.3s ease;
-        }
-
-        .tree-node:hover {
-            border-color: var(--secondary-light);
-            background-color: white;
-            box-shadow: var(--shadow-md);
-            transform: translateX(-5px);
-        }
-
-        /* الخط الأفقي الرابط */
-        .tree-node::before {
-            content: '';
-            position: absolute;
-            right: -24px;
-            top: 25px;
-            width: 24px;
-            height: 4px;
-            background-color: var(--secondary-light);
-            border-radius: 2px;
-        }
-
-        /* الدائرة عند نقطة الربط */
-        .tree-node::after {
-            content: '';
-            position: absolute;
-            right: -30px;
-            top: 21px;
-            width: 12px;
-            height: 12px;
-            background-color: white;
-            border: 3px solid var(--secondary-light);
-            border-radius: 50%;
-            z-index: 2;
-        }
-
-        .node-header {
-            font-size: 1.2rem;
+            margin-bottom: 15px;
             font-weight: 700;
-            color: var(--primary-color);
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            color: var(--primary-light);
+            padding-right: 20px;
         }
 
-        /* ==========================================================================
-           7. التفرعات الداخلية (Sub-Branches)
-           ========================================================================== */
-        .sub-tree {
+        ul.level-1 > li::before {
+            content: '■';
+            position: absolute;
+            right: 0;
+            top: 0;
+            color: var(--primary-dark);
+            font-size: 0.9rem;
+        }
+
+        ul.level-2 {
             list-style: none;
-            padding: 0 20px 0 0;
-            margin-top: 15px;
-            border-right: 2px dashed var(--accent-orange);
+            padding-right: 25px;
+            margin-top: 8px;
+            border-right: 2px solid var(--border-color);
+            margin-right: 8px;
         }
 
-        .sub-node {
+        ul.level-2 > li {
             position: relative;
-            padding: 10px 25px 10px 10px;
             margin-bottom: 8px;
-            color: var(--text-main);
             font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            background: white;
-            border-radius: var(--radius-sm);
-            border: 1px solid transparent;
-            transition: background 0.2s;
+            color: var(--text-main);
+            padding-right: 15px;
         }
 
-        .sub-node:hover {
-            background: #fffaf0;
-            border-color: #feebc8;
-        }
-
-        .sub-node::before {
+        ul.level-2 > li::before {
             content: '';
             position: absolute;
-            right: -22px;
-            top: 50%;
-            width: 22px;
+            right: -2px;
+            top: 12px;
+            width: 10px;
             height: 2px;
-            background-color: var(--accent-orange);
-            transform: translateY(-50%);
+            background-color: var(--border-color);
         }
 
-        .icon-bullet {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 24px;
-            height: 24px;
-            background-color: #ebf4ff;
-            color: var(--secondary-color);
-            border-radius: 50%;
-            font-size: 0.8rem;
-        }
-
-        .sub-node-icon {
-            color: var(--accent-green);
-        }
-
-        /* تفرعات المستوى الثالث */
-        .sub-sub-tree {
-            list-style: none;
-            padding: 0 25px 0 0;
-            margin-top: 10px;
-            border-right: 2px dotted var(--accent-purple);
-            width: 100%;
-        }
-
-        .sub-sub-node {
-            position: relative;
-            padding: 8px 25px 8px 10px;
+        ul.level-3 {
+            list-style: circle;
+            padding-right: 30px;
+            margin-top: 5px;
             color: var(--text-muted);
             font-weight: 500;
-            font-size: 0.95rem;
         }
 
-        .sub-sub-node::before {
-            content: '';
-            position: absolute;
-            right: -27px;
-            top: 50%;
-            width: 20px;
-            height: 2px;
-            background-color: var(--accent-purple);
-            transform: translateY(-50%);
+        /* قائمة عادية للأقسام البسيطة (المراحل والعناصر) */
+        ul.simple-list {
+            list-style-type: decimal;
+            padding-right: 40px;
         }
 
-        /* ==========================================================================
-           8. ألوان مخصصة لكل قسم للمساعدة البصرية
-           ========================================================================== */
-        .color-blue { border-right-color: var(--secondary-color) !important; }
-        .color-blue::before { background-color: var(--secondary-color) !important; }
-        .color-blue::after { border-color: var(--secondary-color) !important; }
-
-        .color-green { border-right-color: var(--accent-green) !important; }
-        .color-green::before { background-color: var(--accent-green) !important; }
-        .color-green::after { border-color: var(--accent-green) !important; }
-
-        .color-purple { border-right-color: var(--accent-purple) !important; }
-        .color-purple::before { background-color: var(--accent-purple) !important; }
-        .color-purple::after { border-color: var(--accent-purple) !important; }
-
-        /* ==========================================================================
-           9. التذييل والحقوق (Footer & Copyrights)
-           ========================================================================== */
-        .doc-footer {
-            margin-top: 60px;
-            padding-top: 30px;
-            border-top: 2px solid var(--border-light);
-            text-align: center;
-            background: linear-gradient(to bottom, transparent, #f8fafc);
-            border-radius: 0 0 var(--radius-lg) var(--radius-lg);
-        }
-
-        .footer-badge {
-            display: inline-block;
-            background: var(--primary-color);
-            color: white;
-            padding: 8px 20px;
-            border-radius: 30px;
-            font-weight: 700;
-            margin-bottom: 15px;
-            box-shadow: var(--shadow-sm);
-        }
-
-        .footer-text {
+        ul.simple-list li {
+            margin-bottom: 8px;
+            font-weight: 600;
             color: var(--text-main);
+        }
+
+        /* التذييل (الحقوق) */
+        .doc-footer {
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            font-family: 'Cairo', sans-serif;
+            page-break-inside: avoid;
+        }
+
+        .footer-university {
             font-size: 1.1rem;
-            font-weight: 800;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 5px;
+        }
+
+        .footer-author {
+            font-size: 1rem;
+            color: var(--text-main);
+            font-weight: 600;
             margin-bottom: 10px;
         }
 
         .footer-copyright {
+            font-size: 0.9rem;
             color: var(--text-muted);
-            font-size: 0.95rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            direction: rtl;
         }
 
-        .heart-icon {
-            color: #d53f8c;
-            animation: heartbeat 1.5s infinite;
-            display: inline-block;
-        }
-
-        /* ==========================================================================
-           10. التأثيرات الحركية (Keyframe Animations)
-           ========================================================================== */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes heartbeat {
-            0% { transform: scale(1); }
-            14% { transform: scale(1.3); }
-            28% { transform: scale(1); }
-            42% { transform: scale(1.3); }
-            70% { transform: scale(1); }
-        }
-
-        /* ==========================================================================
-           11. التجاوب مع الشاشات (Responsive Design)
-           ========================================================================== */
-        @media (max-width: 768px) {
-            .document-wrapper {
-                padding: 30px 20px;
-            }
-            .doc-title {
-                font-size: 2rem;
-            }
-            .tree-node {
-                padding: 10px 15px 10px 10px;
-            }
-        }
-
-        /* إعدادات الطباعة لضمان جودة الـ PDF */
+        /* إعدادات الطباعة للـ PDF */
         @media print {
-            body { background: none; padding: 0; }
+            body { background: white; padding: 0; }
             .controls-container { display: none; }
             .document-wrapper { 
                 box-shadow: none; 
-                border: none;
-                padding: 0;
+                padding: 20px; 
+                border-top: none;
             }
-            .section-block { animation: none; opacity: 1; transform: none; page-break-inside: avoid; }
-            .tree-node { page-break-inside: avoid; }
         }
     </style>
 </head>
 <body>
 
     <div class="controls-container">
-        <button class="btn btn-pdf" onclick="generateHighQualityPDF()">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                <polyline points="14 2 14 8 20 8"></polyline>
-                <line x1="12" y1="18" x2="12" y2="12"></line>
-                <polyline points="9 15 12 18 15 15"></polyline>
-            </svg>
-            تحميل الملخص PDF
+        <button class="btn-pdf" onclick="generatePDF()">
+            تحميل كملف PDF
         </button>
     </div>
 
@@ -486,160 +249,104 @@
         
         <div class="doc-header">
             <h1 class="doc-title">المصنفات وأنواعها</h1>
-            <div class="doc-subtitle">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
-                </svg>
-                مخطط تنظيمي شامل ومفصل
-            </div>
+            <div class="doc-subtitle">مخطط تنظيمي منهجي</div>
         </div>
 
         <div class="section-block">
-            <h2 class="section-title">
-                <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
-                1. أنواع المصنف
-            </h2>
-            <ul class="tree-root">
+            <h2 class="section-title">1. تعريف المصنف</h2>
+            <div class="definition-box"></div>
+        </div>
+
+        <div class="section-block">
+            <h2 class="section-title">2. عناصر المصنف</h2>
+            <ul class="simple-list">
+                <li>عنصر موضوعي</li>
+                <li>عنصر شكلي</li>
+            </ul>
+        </div>
+
+        <div class="section-block">
+            <h2 class="section-title">3. مراحل المصنف</h2>
+            <ul class="simple-list">
+                <li>مرحلة ميلاد الفكرة</li>
+                <li>مرحلة رسوخ الفكرة وإستقرارها</li>
+                <li>مرحلة تصميم وتنفيذ الفكرة</li>
+                <li>مرحلة نشر المصنف وتداولها</li>
+            </ul>
+        </div>
+
+        <div class="section-block">
+            <h2 class="section-title">4. أنواع المصنف</h2>
+            <ul class="level-1">
                 
-                <li class="tree-node color-blue">
-                    <div class="node-header">أ - من حيث قيمتها:</div>
-                    <ul class="sub-tree">
-                        <li class="sub-node">
-                            <span class="icon-bullet">📝</span> تصنيفات علمية مكتوبة
-                        </li>
-                        <li class="sub-node">
-                            <span class="icon-bullet">🎨</span> المصنفات الفنية
-                        </li>
-                        <li class="sub-node">
-                            <span class="icon-bullet">🎵</span> المصنفات الموسيقية
-                        </li>
-                        <li class="sub-node">
-                            <span class="icon-bullet">📺</span> البرامج والوثائق الإعلامية
-                        </li>
+                <li>أ - من حيث قيمتها:
+                    <ul class="level-2">
+                        <li>تصنيفات علمية مكتوبة</li>
+                        <li>المصنفات الفنية</li>
+                        <li>المصنفات الموسيقية</li>
+                        <li>البرامج والوثائق الإعلامية</li>
                     </ul>
                 </li>
 
-                <li class="tree-node color-blue">
-                    <div class="node-header">ب - من حيث نشأتها:</div>
-                    <ul class="sub-tree">
-                        
-                        <li class="sub-node" style="flex-wrap: wrap;">
-                            <div style="width: 100%; display: flex; align-items: center; gap: 8px;">
-                                <span class="icon-bullet">🌟</span> <strong>مصنفات أصلية:</strong>
-                            </div>
-                            <ul class="sub-sub-tree">
-                                <li class="sub-sub-node">مصنفات فردية &larr; <strong>أصلية محضة</strong></li>
-                                <li class="sub-sub-node">مصنفات مشتركة &larr; تتفرع إلى:
-                                    <ul style="list-style: circle; margin-right: 20px; margin-top: 5px;">
+                <li>ب - من حيث نشأتها:
+                    <ul class="level-2">
+                        <li><strong>مصنفات أصلية:</strong>
+                            <ul class="level-3">
+                                <li>مصنفات فردية &larr; (أصلية محضة)</li>
+                                <li>مصنفات مشتركة &larr; تتفرع إلى:
+                                    <ul style="list-style-type: square; margin-right: 20px;">
                                         <li>المصنف الجماعي</li>
                                         <li>المصنف المشترك</li>
                                     </ul>
                                 </li>
                             </ul>
                         </li>
-
-                        <li class="sub-node" style="flex-wrap: wrap;">
-                            <div style="width: 100%; display: flex; align-items: center; gap: 8px;">
-                                <span class="icon-bullet">🔄</span> <strong>مصنفات مشتقة:</strong>
-                            </div>
-                            <ul class="sub-sub-tree">
-                                <li class="sub-sub-node">الترجمة</li>
-                                <li class="sub-sub-node">الاقتباس</li>
-                                <li class="sub-sub-node">التوزيع الموسيقي</li>
-                                <li class="sub-sub-node">تحويل المصنف</li>
+                        <li><strong>مصنفات مشتقة:</strong>
+                            <ul class="level-3">
+                                <li>الترجمة</li>
+                                <li>الاقتباس</li>
+                                <li>التوزيع الموسيقي</li>
+                                <li>تحويل المصنف</li>
                             </ul>
                         </li>
-
                     </ul>
                 </li>
-            </ul>
-        </div>
 
-        <div class="section-block">
-            <h2 class="section-title" style="background: linear-gradient(90deg, #2b6cb0 0%, #4299e1 100%);">
-                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                2. مراحل المصنف
-            </h2>
-            <ul class="tree-root">
-                <li class="tree-node color-green">
-                    <div class="node-header"><span class="icon-bullet">1</span> مرحلة ميلاد الفكرة</div>
-                </li>
-                <li class="tree-node color-green">
-                    <div class="node-header"><span class="icon-bullet">2</span> مرحلة رسوخ الفكرة وإستقرارها</div>
-                </li>
-                <li class="tree-node color-green">
-                    <div class="node-header"><span class="icon-bullet">3</span> مرحلة تصميم وتنفيذ الفكرة</div>
-                </li>
-                <li class="tree-node color-green">
-                    <div class="node-header"><span class="icon-bullet">4</span> مرحلة نشر المصنف وتداولها</div>
-                </li>
-            </ul>
-        </div>
-
-        <div class="section-block">
-            <h2 class="section-title" style="background: linear-gradient(90deg, #805ad5 0%, #9f7aea 100%);">
-                <svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
-                3. عناصر المصنف
-            </h2>
-            <ul class="tree-root">
-                <li class="tree-node color-purple">
-                    <div class="node-header"><span class="icon-bullet">🎯</span> عنصر موضوعي</div>
-                </li>
-                <li class="tree-node color-purple">
-                    <div class="node-header"><span class="icon-bullet">📐</span> عنصر شكلي</div>
-                </li>
             </ul>
         </div>
 
         <div class="doc-footer">
-            <div class="footer-badge">قانون عام - سنة ثالثة ليسانس</div>
-            <div class="footer-text">تم إعداد هذا المخطط من قبل الزميلة: عبير عائشة</div>
+            <div class="footer-university">قانون عام - سنة ثالثة ليسانس</div>
+            <div class="footer-author">من إعداد الزميلة: عبير عائشة</div>
             <div class="footer-copyright">
-                <span>2026-2025 كل الحقوق محفوظة المطور انا خاطيني نتوما الصح</span>
-                <span class="heart-icon">💜</span>
+                2026-2025 كل الحقوق محفوظة المطور انا خاطيني نتوما الصح
             </div>
         </div>
 
     </div>
 
     <script>
-        function generateHighQualityPDF() {
-            // إضافة تأثير بصري للزر أثناء التحميل
-            const btn = document.querySelector('.btn-pdf');
-            const originalText = btn.innerHTML;
-            btn.innerHTML = 'جاري التجهيز... ⏳';
-            btn.style.opacity = '0.7';
-
+        function generatePDF() {
             const element = document.getElementById('pdf-content');
             
-            // إعدادات متقدمة للحفاظ على الألوان والدقة
             const opt = {
-                margin:       [0.2, 0, 0.2, 0], // هوامش المستند
-                filename:     'المصنفات_وأنواعها_عبير_عائشة.pdf',
+                margin:       10, // هوامش بالمليمتر
+                filename:     'المصنفات_وأنواعها_ملخص_أكاديمي.pdf',
                 image:        { type: 'jpeg', quality: 1 },
                 html2canvas:  { 
-                    scale: 3, // دقة عالية جداً
+                    scale: 2, 
                     useCORS: true,
-                    letterRendering: true,
-                    scrollY: 0
+                    windowWidth: element.scrollWidth,
+                    windowHeight: element.scrollHeight
                 },
                 jsPDF: { 
-                    unit: 'in', 
+                    unit: 'mm', 
                     format: 'a4', 
                     orientation: 'portrait' 
                 }
             };
 
-            // إنشاء وتحميل الملف ثم إعادة الزر لحالته
-            html2pdf().set(opt).from(element).save().then(() => {
-                btn.innerHTML = originalText;
-                btn.style.opacity = '1';
-            }).catch(err => {
-                console.error('حدث خطأ أثناء تصدير PDF:', err);
-                btn.innerHTML = originalText;
-                btn.style.opacity = '1';
-                alert('عذراً، حدث خطأ في التصدير.');
-            });
+            html2pdf().set(opt).from(element).save();
         }
     </script>
 </body>
